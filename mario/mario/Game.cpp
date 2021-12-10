@@ -18,8 +18,10 @@
 /// </summary>
 Game::Game() :
 	m_window{ sf::VideoMode{ 800U, 600U, 32U }, "SFML Game" },
+	m_isMaraio{true},
 	m_exitGame{false} //when true game will exit
 {
+	m_isMaraio = true;
 	setupFontAndText(); // load font 
 	setupSprite(); // load texture
 }
@@ -91,6 +93,10 @@ void Game::processKeys(sf::Event t_event)
 	{
 		m_exitGame = true;
 	}
+	if (sf::Keyboard::Space == t_event.key.code)
+	{
+		changecharacter();
+	}
 }
 
 /// <summary>
@@ -114,6 +120,23 @@ void Game::render()
 	m_window.draw(m_characterName);
 	m_window.draw(m_characterSprite);
 	m_window.display();
+}
+
+void Game::changecharacter()
+{
+	if (m_isMaraio)
+	{
+		m_characterSprite.setTextureRect(sf::IntRect(64, 0, 64, 148));
+		m_characterName.setString("Luigi");
+		m_characterName.setFillColor(sf::Color::Green);
+	}
+	else
+	{
+		m_characterSprite.setTextureRect(sf::IntRect(0, 0, 64, 148));
+		m_characterName.setString("Mario");
+		m_characterName.setFillColor(sf::Color::Red);
+	}
+	m_isMaraio = !m_isMaraio;
 }
 
 /// <summary>

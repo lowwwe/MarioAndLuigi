@@ -27,6 +27,7 @@ private:
 	void processKeys(sf::Event t_event);
 	void update(sf::Time t_deltaTime);
 	void render();
+	void changecharacter();
 	
 	void setupFontAndText();
 	void setupSprite();
@@ -39,6 +40,7 @@ private:
 	sf::Texture m_logoTexture; // texture used for sfml logo
 	sf::Sprite m_logoSprite; // sprite used for sfml logo
 	bool m_exitGame; // control exiting game
+	bool m_isMaraio = true; // is mario the current chartacter
 
 };
 
