@@ -41,6 +41,7 @@ private:
 	void changecharacter();
 	void checkDirection();
 	void move();
+	void checkBoundry();
 	
 	void setupFontAndText();
 	void setupSprite();
