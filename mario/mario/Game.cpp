@@ -109,6 +109,8 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
+	checkDirection();
+	move();
 }
 
 /// <summary>
@@ -137,6 +139,53 @@ void Game::changecharacter()
 		m_characterName.setFillColor(sf::Color::Red);
 	}
 	m_isMaraio = !m_isMaraio;
+}
+
+void Game::checkDirection()
+{
+	m_direction = Direction::None;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		m_direction = Direction::Up;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		m_direction = Direction::Down;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		m_direction = Direction::Left;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		m_direction = Direction::Right;
+	}
+}
+
+void Game::move()
+{
+	sf::Vector2f movement{ 0.0f,0.0f };
+	switch (m_direction)
+	{
+	case Direction::None:
+		break;
+	case Direction::Up:
+		movement.y = -m_speed;
+		break;
+	case Direction::Down:
+		movement.y = m_speed;
+		break;
+	case Direction::Right:
+		movement.x = m_speed;
+		break;
+	case Direction::Left:
+		movement.x = -m_speed;
+		break;
+	default:
+		break;
+	}
+	m_location += movement;
+	m_characterSprite.setPosition(m_location);
 }
 
 /// <summary>
@@ -169,6 +218,7 @@ void Game::setupSprite()
 		std::cout << "problem with mario texture " << std::endl;
 	}
 	m_characterSprite.setTexture(m_marioLuigiTex);
-	m_characterSprite.setPosition(0.0f, 0.0f);
+	m_characterSprite.setPosition(m_location);
 	m_characterSprite.setTextureRect(sf::IntRect(0, 0, 64, 148));
+	m_characterSprite.setOrigin(32.0f, 74.0f);
 }

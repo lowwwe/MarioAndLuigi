@@ -11,6 +11,17 @@
 /// </summary>
 #include <SFML/Graphics.hpp>
 
+enum class Direction
+{
+	None,
+	Up,
+	Down,
+	Right,
+	Left
+	
+};
+
+
 class Game
 {
 public:
@@ -28,6 +39,8 @@ private:
 	void update(sf::Time t_deltaTime);
 	void render();
 	void changecharacter();
+	void checkDirection();
+	void move();
 	
 	void setupFontAndText();
 	void setupSprite();
@@ -41,7 +54,9 @@ private:
 	sf::Sprite m_logoSprite; // sprite used for sfml logo
 	bool m_exitGame; // control exiting game
 	bool m_isMaraio = true; // is mario the current chartacter
-
+	Direction m_direction = Direction::None; // marios direction
+	sf::Vector2f m_location{ 400.0f,300.0f }; // Marios location
+	float m_speed = 2.0f; // how quick mario moves
 };
 
 #endif // !GAME_HPP
