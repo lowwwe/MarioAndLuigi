@@ -34,6 +34,8 @@ private:
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_marioFont;// mario font definition
 	sf::Text m_characterName;// character anme on screen
+	sf::Texture m_marioLuigiTex;// texture for mario and lugi
+	sf::Sprite m_characterSprite;// sprite for character
 	sf::Texture m_logoTexture; // texture used for sfml logo
 	sf::Sprite m_logoSprite; // sprite used for sfml logo
 	bool m_exitGame; // control exiting game
